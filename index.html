@@ -5,34 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>貸款試算v0.1</title>
+    <style>
+        #container{
+            text-align:left;
+        }
+        form{
+            background-color: antiquewhite;
+            padding: 24px;
+            border-radius:12px;
+            width:80%;
+            margin:0 auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>貸款利息計算機</h1>
-    <form action="">
-        <label for="loanAmount">貸款金額</label>
-        <input type="number" name="loanAmount" id="loanAmount">元<br>
-        <label for="loanInterestRate">年利率</label>
-        <input type="number" name="loanInterestRate" id="loanInterestRate">%<br>
-        <label for="loanTerm">還款週期</label>
-        <select name="loanTerm" id="loanTerm">
-            <option value="3">3年</option>
-            <option value="5">5年</option>
-            <option value="7">7年</option>
-            <option value="20">20年</option>
-        </select><br>
-        <label for="">還款方式</label>
-        <input type="radio" name="payment" id="Principal">本金攤還
-        <input type="radio" name="payment" id="Amortization">本息攤還
-        <br>
-        <button type="button">計算</button>
-    </form>
+    <div id="container">
+        <h1>貸款利息計算機</h1>
+        <form action="">
+            <label for="loanAmount">貸款金額</label>
+            <input type="number" name="loanAmount" id="loanAmount" value="100000">元<br>
+            <label for="loanInterestRate">貸款利率</label>
+            <input type="number" name="loanInterestRate" id="loanInterestRate" value="10">%<br>
+            <label for="loanTerm">還款週期</label>
+            <select name="loanTerm" id="loanTerm">
+                <option value="3">3年</option>
+                <option value="5">5年</option>
+                <option value="7">7年</option>
+                <option value="20">20年</option>
+            </select><br>
+            <label for="">還款方式</label>
+            <input type="radio" name="payment" id="Principal" checked>本金攤還
+            <input type="radio" name="payment" id="Amortization">本息攤還
+            <br>
+            <button type="button" onclick="calc()">計算</button>
+        </form>
+        <div id="result">
+
+        </div>
+    </div>
     <script>
+        const LoanAmountEl=document.querySelector("#loanAmount");
+        const InterestRateEl=document.querySelector("#loanInterestRate");
+        const LoanTermEl=document.querySelector("#loanTerm")
+        const resultEl = document.querySelector("#result")
+        console.log(LoanAmountEl,InterestRateEl,LoanTermEl);
 
+        resultEl.innerHTML="<h1>目前結果:</h1>";
 
+        function calc(){
+            loanAmount = LoanAmountEl.value;
+            loanInterestRate = InterestRateEl.value;
+            loanTerm = LoanTermEl.value;
+            principal = parseInt(loanAmount / (loanTerm * 12));
+            monthlyRate=(0.1/12);
+            let text;
+            for(let i=0;i<loanTerm*12;i++){
+                if (i== (loanTerm * 12)-1){
+                    interest = parseInt(loanAmount * monthlyRate);
+                    principal = loanAmount;
+                    loanAmount = 0;
+                    text=(`期數：${i + 1}償還本金：${principal}利息：${interest}本利和：${principal + interest}剩餘貸款：${loanAmount}<br>`);
 
+                }
+                else{
+                    interest = parseInt(loanAmount * monthlyRate)
+                    loanAmount = loanAmount - principal;
+                    text=(`期數：${i + 1}償還本金：${principal}利息：${interest}本利和：${principal + interest}剩餘貸款：${loanAmount}<br>`);
+                }
+                resultEl.innerHTML +=`<li>${text}</li>`;
+            }
 
-
-
+        }
+        console.log(loanAmount,loanInterestRate,loanTerm)
     </script>
     
 </body>
