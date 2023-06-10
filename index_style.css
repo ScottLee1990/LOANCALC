@@ -1,0 +1,53 @@
+#container {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+#result {
+    background-color: blue;
+    color: white;
+    text-align: center;
+    width: 85%;
+    margin: 0 auto;
+}
+
+th {
+    background-color: rgb(179, 179, 179);
+    border: 1px solid black;
+}
+
+td {
+    background-color: rgba(228, 228, 228, 0.938);
+    border: 1px solid black;
+}
+
+tr {
+    text-align: center;
+}
+
+form {
+    background-color: antiquewhite;
+    padding: 24px;
+    border-radius: 12px;
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+table {
+    text-align: center;
+    width: 80%;
+    margin: 24px auto;
+    border-collapse: collapse;
+}
+
+@media screen and (max-width:768px) {
+    #result {
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+    }

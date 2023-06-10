@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貸款試算v0.1</title>
+    <link href="index_style.css" rel="stylesheet">
+
+</head>
+<body>
+    <div id="container">
+        <h1>貸款利息計算機</h1>
+        <form action="">
+            <label for="loanAmount">貸款金額</label>
+            <input type="number" name="loanAmount" id="loanAmount" value="100000">元<br>
+            <label for="loanInterestRate">貸款利率</label>
+            <input type="number" name="loanInterestRate" id="loanInterestRate" value="10">%<br>
+            <label for="loanTerm">還款週期</label>
+            <select name="loanTerm" id="loanTerm">
+                <option value="3">3年</option>
+                <option value="5">5年</option>
+                <option value="7">7年</option>
+                <option value="20">20年</option>
+            </select>
+            <label for="customterm">自訂貸款期限</label>
+            <input type="number" name="customterm" id="customterm" value="0" style="width:40px;">年<br>
+            <label for="">還款方式</label>
+            <input type="radio" name="payment" id="Principal" checked>本金攤還
+            <input type="radio" name="payment" id="Amortization">本息攤還
+            <br>
+            <button type="button" onclick="calcC()">計算</button>
+            
+        </form>
+        <div id="result">
+        
+        </div>
+        <table id="tableResult">
+            <thead>
+                <tr>
+                    <th>期別</th>
+                    <th>償還本金</th>
+                    <th>償還利息</th>
+                    <th>償還本利和</th>
+                    <th>貸款餘額</th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
